@@ -1,76 +1,89 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Mobile Menu Toggle
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    // 2. Smooth Scrolling for Navbar
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
+    // 1. Smooth Scrolling for Navbar
+    document.querySelectorAll('.nav-links a, .navbar-nav a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                navLinks.classList.remove('active');
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            if(targetId && targetId.startsWith('#') && targetId !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    const navbarCollapse = document.getElementById('navbarNav');
+                    if(navbarCollapse.classList.contains('show')) {
+                        new bootstrap.Collapse(navbarCollapse).hide();
+                    }
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
 
-    // 3. SEARCH BUTTON LOGIC
+    // 2. WEATHER API INTEGRATION
+    const weatherWidget = document.getElementById('weather-widget');
+    const weatherTemp = document.getElementById('weather-temp');
+    const weatherDesc = document.getElementById('weather-desc');
+    const weatherIcon = document.getElementById('weather-icon');
+    const API_KEY = '5f57213961984739b29123910261111'; 
+
+    async function fetchWeather(destination) {
+        try {
+            weatherWidget.classList.remove('d-none');
+            weatherTemp.innerText = '--°C';
+            weatherDesc.innerText = 'Fetching...';
+            weatherIcon.className = 'fa-solid fa-spinner fa-spin';
+
+            const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${destination}&aqi=no`);
+            if (!response.ok) throw new Error('Location not found');
+
+            const data = await response.json();
+            weatherTemp.innerText = `${data.current.temp_c}°C`;
+            weatherDesc.innerText = data.current.condition.text;
+            weatherIcon.className = 'fa-solid fa-cloud-sun'; 
+
+        } catch (error) {
+            weatherTemp.innerText = 'Error';
+            weatherDesc.innerText = 'Not found';
+            weatherIcon.className = 'fa-solid fa-triangle-exclamation';
+        }
+    }
+
+    // 3. SEARCH BUTTON TRIGGER
     const searchBtn = document.getElementById('search-btn');
-    const destInput = document.getElementById('dest-input');
+    const searchInput = document.getElementById('dest-input'); 
 
     searchBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Page reload aagama thadukkum
-        
-        const destination = destInput.value.trim();
-        
+        e.preventDefault(); 
+        const destination = searchInput.value.trim();
         if(destination === "") {
-            // Type pannama click panna alert varum
             alert("Please enter a destination to search!");
         } else {
-            // Type pannirundha, destination section ku smooth ah scroll aagum
+            fetchWeather(destination);
             const destinationsSection = document.getElementById('destinations');
             if (destinationsSection) {
                 destinationsSection.scrollIntoView({ behavior: 'smooth' });
             }
         }
     });
-});
 
-        // 4. BOOKING FORM LOGIC & VALIDATION
-    const openFormBtn = document.getElementById('open-form-btn');
-    const closeFormBtn = document.getElementById('close-form-btn');
-    const bookingModal = document.getElementById('booking-modal');
+    // 4. BOOKING FORM LOGIC & BOOTSTRAP MODAL
+    const openFormBtns = [document.getElementById('open-form-btn'), document.getElementById('open-form-btn-2')];
+    const bookingModalElement = document.getElementById('booking-modal');
+    const bookingModal = new bootstrap.Modal(bookingModalElement); // Bootstrap Modal Instance
     const bookingForm = document.getElementById('booking-form');
 
     // Open Modal
-    openFormBtn.addEventListener('click', (e) => { e.preventDefault(); bookingModal.classList.add('active'); });
-
-        // --- CTA "BOOK CONSULTATION" BUTTON  ---
-    const openFormBtn2 = document.getElementById('open-form-btn-2');
-    openFormBtn2.addEventListener('click', (e) => {
-        e.preventDefault();
-        bookingModal.classList.add('active');
+    openFormBtns.forEach(btn => {
+        if(btn) {
+            btn.addEventListener('click', (e) => { e.preventDefault(); bookingModal.show(); });
+        }
     });
 
-    //Close Modal
-    
-    closeFormBtn.addEventListener('click', () => { bookingModal.classList.remove('active'); });
-    window.addEventListener('click', (e) => { if (e.target === bookingModal) bookingModal.classList.remove('active'); });
-
-    // Input Elements
+    // Form Elements
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
-    const destInput = document.getElementById('destination');
+    const destFormInput = document.getElementById('destination'); 
     const dateInput = document.getElementById('travel-date');
     const guestsInput = document.getElementById('guests');
 
@@ -84,54 +97,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validation Functions
     function validateName() {
-        if (nameInput.value.trim().length < 3) {
-            nameError.textContent = "Name must be at least 3 characters.";
-            nameInput.classList.add('invalid'); return false;
-        } else { nameError.textContent = ""; nameInput.classList.remove('invalid'); return true; }
+        if (nameInput.value.trim().length < 3) { nameError.textContent = "Name must be at least 3 characters."; return false; } 
+        else { nameError.textContent = ""; return true; }
     }
-
     function validateEmail() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput.value.trim())) {
-            emailError.textContent = "Please enter a valid email address.";
-            emailInput.classList.add('invalid'); return false;
-        } else { emailError.textContent = ""; emailInput.classList.remove('invalid'); return true; }
+        if (!emailRegex.test(emailInput.value.trim())) { emailError.textContent = "Please enter a valid email."; return false; } 
+        else { emailError.textContent = ""; return true; }
     }
-
     function validatePhone() {
         const phoneRegex = /^[0-9]{10}$/;
-        if (!phoneRegex.test(phoneInput.value.trim())) {
-            phoneError.textContent = "Please enter a valid 10-digit phone number.";
-            phoneInput.classList.add('invalid'); return false;
-        } else { phoneError.textContent = ""; phoneInput.classList.remove('invalid'); return true; }
+        if (!phoneRegex.test(phoneInput.value.trim())) { phoneError.textContent = "Please enter 10-digit phone number."; return false; } 
+        else { phoneError.textContent = ""; return true; }
     }
-
     function validateDestination() {
-        if (destInput.value === "") {
-            destError.textContent = "Please select a destination.";
-            destInput.classList.add('invalid'); return false;
-        } else { destError.textContent = ""; destInput.classList.remove('invalid'); return true; }
+        if (destFormInput.value === "") { destError.textContent = "Please select a destination."; return false; } 
+        else { destError.textContent = ""; return true; }
     }
-
     function validateDate() {
-        if (dateInput.value === "") {
-            dateError.textContent = "Please select a date.";
-            dateInput.classList.add('invalid'); return false;
-        } else { dateError.textContent = ""; dateInput.classList.remove('invalid'); return true; }
+        if (dateInput.value === "") { dateError.textContent = "Please select a date."; return false; } 
+        else { dateError.textContent = ""; return true; }
     }
-
     function validateGuests() {
-        if (guestsInput.value === "" || guestsInput.value < 1) {
-            guestsError.textContent = "At least 1 guest required.";
-            guestsInput.classList.add('invalid'); return false;
-        } else { guestsError.textContent = ""; guestsInput.classList.remove('invalid'); return true; }
+        if (guestsInput.value === "" || guestsInput.value < 1) { guestsError.textContent = "At least 1 guest required."; return false; } 
+        else { guestsError.textContent = ""; return true; }
     }
 
-    // Real-time Validation (Input & Change Events)
+    // Real-time Validation
     nameInput.addEventListener('input', validateName);
     emailInput.addEventListener('input', validateEmail);
     phoneInput.addEventListener('input', validatePhone);
-    destInput.addEventListener('change', validateDestination);
+    destFormInput.addEventListener('change', validateDestination);
     dateInput.addEventListener('change', validateDate);
     guestsInput.addEventListener('input', validateGuests);
 
@@ -147,15 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isGuestsValid = validateGuests();
 
         if (isNameValid && isEmailValid && isPhoneValid && isDestValid && isDateValid && isGuestsValid) {
-            alert(`Booking Confirmed for ${destInput.value}! We will contact you soon. 🌴`);
+            alert(`Booking Confirmed for ${destFormInput.value}! We will contact you soon. 🌴`);
             bookingForm.reset(); 
-            bookingModal.classList.remove('active'); 
-        } else {
-            if(!isNameValid) nameInput.focus();
-            else if(!isEmailValid) emailInput.focus();
-            else if(!isPhoneValid) phoneInput.focus();
-            else if(!isDestValid) destInput.focus();
-            else if(!isDateValid) dateInput.focus();
-            else if(!isGuestsValid) guestsInput.focus();
+            bookingModal.hide(); // Bootstrap Modal hide
         }
     });
+
+});

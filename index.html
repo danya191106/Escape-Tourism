@@ -5,145 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape | Explore the World</title>
     
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Custom CSS (Only for specific overrides) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 1. HEADER / NAVBAR -->
-    <header class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-compass"></i> Escape
-        </div>
-        
-        <nav>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#destinations">Destinations</a></li>
-                <li><a href="#why-us">About</a></li>
-                <li><a href="#footer">Contact</a></li>
-            </ul>
-        </nav>
-
-        <div class="nav-actions">
-           <a href="#" class="btn-primary" id="open-form-btn">Book Now</a> 
-            <a href="#" class="user-icon"><i class="fa-regular fa-user"></i></a>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fa-solid fa-bars"></i>
+    <!-- 1. NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 text-primary" href="#">
+                <i class="fa-solid fa-compass"></i> Escape
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto fw-semibold">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why-us">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="btn btn-primary rounded-pill px-4 fw-bold" id="open-form-btn">Book Now</a>
+                    <a href="#" class="btn btn-light rounded-circle text-primary"><i class="fa-regular fa-user"></i></a>
+                </div>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- 2. HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge"><i class="fa-solid fa-water"></i> BEACHES & MOUNTAINS AWAIT</div>
-            <h1>Escape To Your Dream Destination</h1>
-            <p>Discover extraordinary destinations, from serene beaches to breathtaking mountains, tailored for your dream vacation.</p>
-        </div>
+    <section class="hero position-relative d-flex flex-column justify-content-center align-items-center text-center text-white" id="home">
+        <div class="container position-relative z-2">
+            <div class="badge bg-white bg-opacity-25 text-white rounded-pill px-3 py-2 mb-3 fw-semibold border border-light border-opacity-25">
+                <i class="fa-solid fa-water me-2"></i> BEACHES & MOUNTAINS AWAIT
+            </div>
+            <h1 class="display-3 fw-bold mb-3">Escape To Your Dream Destination</h1>
+            <p class="lead text-light mb-5 mx-auto" style="max-width: 700px;">Discover extraordinary destinations, from serene beaches to breathtaking mountains, tailored for your dream vacation.</p>
 
-               <!-- Clean Search Box -->
-        <div class="search-box">
-            <i class="fa-solid fa-location-dot" style="color: var(--primary-color); font-size: 1.2rem; margin-left: 15px;"></i>
-            <input type="text" id="dest-input" placeholder="Where to? (e.g., Maldives, Switzerland)">
-            
-            <button type="button" class="btn-search" id="search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i> Search
-            </button>
-        </div> 
-        
-        <!-- Trust Badges -->
-        <div class="trust-badges">
-            <span><i class="fa-solid fa-star" style="color: #f59e0b;"></i> 4.9/5 Rating (12,000+ Journeys)</span>
-        
+            <!-- Search Box -->
+            <div class="search-box bg-white rounded-pill shadow-lg p-2 mx-auto d-flex align-items-center" style="max-width: 600px;">
+                <i class="fa-solid fa-location-dot text-primary ms-3 fs-5"></i>
+                <input type="text" id="dest-input" class="form-control border-0 shadow-none fw-semibold bg-transparent" placeholder="Where to? (e.g., Maldives, Switzerland)">
+                <button type="button" class="btn btn-primary rounded-pill px-4 fw-bold text-nowrap" id="search-btn">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i> Search
+                </button>
+            </div>
+
+            <!-- Weather Widget -->
+            <div class="weather-widget mt-4 mx-auto d-none" id="weather-widget">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-cloud-sun fs-1 text-warning" id="weather-icon"></i>
+                    <div class="text-start">
+                        <h3 class="fw-bold mb-0 text-white" id="weather-temp">--°C</h3>
+                        <p class="text-light mb-0 small" id="weather-desc">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- 3. QUOTE SECTION -->
-    <section class="quote-section">
-        <p><i class="fa-solid fa-quote-left"></i> The Maldives trip was pure magic. Escape handled our overwater villa and private snorkeling tours perfectly. <span>— SARAH J., VERIFIED TRAVELER</span></p>
+    <section class="bg-primary bg-opacity-10 py-4 text-center border-bottom">
+        <div class="container">
+            <p class="fst-italic text-secondary mb-0">
+                <i class="fa-solid fa-quote-left me-2"></i> The Maldives trip was pure magic. Escape handled our overwater villa and private snorkeling tours perfectly. 
+                <span class="fw-bold text-dark ms-2">— SARAH J., VERIFIED TRAVELER</span>
+            </p>
+        </div>
     </section>
 
     <!-- 4. TRENDING GETAWAYS -->
-    <section class="destinations" id="destinations">
-        <div class="section-header">
-            <div>
-                <span class="sub-heading"><i class="fa-solid fa-map"></i> CURATED COLLECTIONS</span>
-                <h2>Top Escapes</h2>
-                <p>Handcrafted journeys for beach lovers and mountain adventurers.</p>
-            </div>
-        </div>
-
-        <div class="cards-container">
-            <!-- Card 1: Maldives -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=600" alt="Maldives">
-                    <div class="card-tags">
-                        <span class="tag-teal">BEACH PARADISE</span>
-                        <span class="tag-white">5 Days</span>
-                    </div>
-                    <i class="fa-regular fa-heart heart-icon"></i>
-                    <div class="card-price">$2,499 <span>/person</span></div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">
-                        <h3>Maldives</h3>
-                        <span class="rating"><i class="fa-solid fa-star"></i> 4.9 (520)</span>
-                    </div>
-                    <p>Relax in overwater bungalows, crystal clear turquoise waters, and world-class coral reefs.</p>
-                    <div class="card-footer">
-                        <span><i class="fa-solid fa-water"></i> Overwater Villa • Snorkeling</span>
-                        <a href="#">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
+    <section class="py-5 bg-white" id="destinations">
+        <div class="container py-4">
+            <div class="mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wide small"><i class="fa-solid fa-map me-2"></i> CURATED COLLECTIONS</span>
+                <h2 class="display-6 fw-bold mt-2">Top Escapes</h2>
+                <p class="text-muted">Handcrafted journeys for beach lovers and mountain adventurers.</p>
             </div>
 
-            <!-- Card 2: Switzerland -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=600" alt="Switzerland">
-                    <div class="card-tags">
-                        <span class="tag-blue">MOUNTAIN ESCAPE</span>
-                        <span class="tag-white">7 Days</span>
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Maldives" style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-primary">BEACH PARADISE</span>
+                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">5 Days</span>
+                            <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$2,499 <small>/person</small></span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h5 fw-bold mb-0">Maldives</h3>
+                                <span class="text-warning small fw-bold"><i class="fa-solid fa-star"></i> 4.9 (520)</span>
+                            </div>
+                            <p class="text-muted small mb-4">Relax in overwater bungalows, crystal clear turquoise waters, and world-class coral reefs.</p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <span class="text-muted small"><i class="fa-solid fa-water me-1"></i> Overwater Villa</span>
+                                <a href="#" class="text-primary fw-bold text-decoration-none small">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <i class="fa-regular fa-heart heart-icon"></i>
-                    <div class="card-price">$3,200 <span>/person</span></div>
                 </div>
-                <div class="card-content">
-                    <div class="card-title">
-                        <h3>Switzerland</h3>
-                        <span class="rating"><i class="fa-solid fa-star"></i> 4.95 (410)</span>
-                    </div>
-                    <p>Experience snow-capped Alps, scenic train rides, and charming lakeside villages.</p>
-                    <div class="card-footer">
-                        <span><i class="fa-solid fa-mountain"></i> Alps Tour • Glacier Express</span>
-                        <a href="#">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Switzerland" style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-info">MOUNTAIN ESCAPE</span>
+                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">7 Days</span>
+                            <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$3,200 <small>/person</small></span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h5 fw-bold mb-0">Switzerland</h3>
+                                <span class="text-warning small fw-bold"><i class="fa-solid fa-star"></i> 4.95 (410)</span>
+                            </div>
+                            <p class="text-muted small mb-4">Experience snow-capped Alps, scenic train rides, and charming lakeside villages.</p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <span class="text-muted small"><i class="fa-solid fa-mountain me-1"></i> Alps Tour</span>
+                                <a href="#" class="text-primary fw-bold text-decoration-none small">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card 3: Lakshadweep -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=600" alt="Lakshadweep">
-                    <div class="card-tags">
-                        <span class="tag-orange">HIDDEN GEM</span>
-                        <span class="tag-white">4 Days</span>
-                    </div>
-                    <i class="fa-regular fa-heart heart-icon"></i>
-                    <div class="card-price">$1,200 <span>/person</span></div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">
-                        <h3>Lakshadweep</h3>
-                        <span class="rating"><i class="fa-solid fa-star"></i> 4.8 (280)</span>
-                    </div>
-                    <p>Unspoiled beaches, coral atolls, and a tranquil escape away from the crowds.</p>
-                    <div class="card-footer">
-                        <span><i class="fa-solid fa-umbrella-beach"></i> Beach Resort • Scuba Diving</span>
-                        <a href="#">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Lakshadweep" style="height: 250px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark">HIDDEN GEM</span>
+                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">4 Days</span>
+                            <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$1,200 <small>/person</small></span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h5 fw-bold mb-0">Lakshadweep</h3>
+                                <span class="text-warning small fw-bold"><i class="fa-solid fa-star"></i> 4.8 (280)</span>
+                            </div>
+                            <p class="text-muted small mb-4">Unspoiled beaches, coral atolls, and a tranquil escape away from the crowds.</p>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <span class="text-muted small"><i class="fa-solid fa-umbrella-beach me-1"></i> Beach Resort</span>
+                                <a href="#" class="text-primary fw-bold text-decoration-none small">View Itinerary <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,186 +163,194 @@
     </section>
 
     <!-- 5. WHY CHOOSE US -->
-    <section class="why-us" id="why-us">
-        <div class="section-header center">
-            <span class="sub-heading"><i class="fa-solid fa-shield-heart"></i> THE ESCAPE DIFFERENCE</span>
-            <h2>Why Travel With Escape</h2>
-            <p>We take care of every detail so you can focus on creating memories.</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="icon-box teal"><i class="fa-solid fa-sack-dollar"></i></div>
-                <h3>Best Price Guarantee</h3>
-                <p>Unmatched value on premium packages. Find a lower price? We match it plus give you a $100 travel credit.</p>
+    <section class="py-5 bg-light" id="why-us">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="text-primary fw-bold text-uppercase small"><i class="fa-solid fa-shield-heart me-2"></i> THE ESCAPE DIFFERENCE</span>
+                <h2 class="display-6 fw-bold mt-2">Why Travel With Escape</h2>
+                <p class="text-muted">We take care of every detail so you can focus on creating memories.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="icon-box orange"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h3>Expert Local Guides</h3>
-                <p>Handpicked insiders who unlock hidden gems, authentic culinary spots, and private access.</p>
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
+                        <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-sack-dollar fs-5"></i></div>
+                        <h3 class="h5 fw-bold">Best Price Guarantee</h3>
+                        <p class="text-muted small mb-0">Unmatched value on premium packages. Find a lower price? We match it plus give you a $100 travel credit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
+                        <div class="bg-warning bg-opacity-10 text-warning rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-map-location-dot fs-5"></i></div>
+                        <h3 class="h5 fw-bold">Expert Local Guides</h3>
+                        <p class="text-muted small mb-0">Handpicked insiders who unlock hidden gems, authentic culinary spots, and private access.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
+                        <div class="bg-info bg-opacity-10 text-info rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-headset fs-5"></i></div>
+                        <h3 class="h5 fw-bold">24/7 Dedicated Support</h3>
+                        <p class="text-muted small mb-0">Personal travel concierge accessible round-the-clock from takeoff to touchdown.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <div class="icon-box blue"><i class="fa-solid fa-headset"></i></div>
-                <h3>24/7 Dedicated Support</h3>
-                <p>Personal travel concierge accessible round-the-clock from takeoff to touchdown.</p>
-            </div>
-        </div>
-
-        <!-- Stats -->
-        <div class="stats-container">
-            <div class="stat-item">
-                <h2>100%</h2>
-                <p>Tailored Experiences</p>
-            </div>
-            <div class="stat-item">
-                <h2>50+</h2>
-                <p>Global Destinations</p>
-            </div>
-            <div class="stat-item">
-                <h2>10,000+</h2>
-                <p>Happy Explorers</p>
-            </div>
-            <div class="stat-item">
-                <h2>24 min</h2>
-                <p>Avg Support Response</p>
+            <!-- Stats -->
+            <div class="row text-center bg-white rounded-4 shadow-sm p-4 mx-1">
+                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                    <h2 class="fw-bold text-primary display-6 mb-0">100%</h2>
+                    <p class="text-muted small mb-0">Tailored Experiences</p>
+                </div>
+                <div class="col-6 col-md-3 mb-3 mb-md-0">
+                    <h2 class="fw-bold text-primary display-6 mb-0">50+</h2>
+                    <p class="text-muted small mb-0">Global Destinations</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-primary display-6 mb-0">10,000+</h2>
+                    <p class="text-muted small mb-0">Happy Explorers</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-primary display-6 mb-0">24 min</h2>
+                    <p class="text-muted small mb-0">Avg Support Response</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 6. CTA BANNER -->
-    <section class="cta-banner">
-        <div class="cta-content">
-            <span class="cta-badge"><i class="fa-solid fa-plane"></i> READY TO EXPLORE?</span>
-            <h2>Design your custom itinerary with our experts.</h2>
-            <p>Schedule a complimentary consultation. We tailor routes, arrange stays, and personalize every detail.</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="#" class="btn-orange" id="open-form-btn-2">Book Consultation</a>
-            <a href="#" class="btn-outline">View All Trips</a>
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="bg-primary text-white rounded-5 p-5 d-md-flex justify-content-between align-items-center shadow-lg">
+                <div class="mb-4 mb-md-0">
+                    <span class="fw-bold small text-uppercase opacity-75"><i class="fa-solid fa-plane me-2"></i> READY TO EXPLORE?</span>
+                    <h2 class="display-6 fw-bold mt-2 mb-3">Design your custom itinerary.</h2>
+                    <p class="opacity-75 mb-0" style="max-width: 500px;">Schedule a complimentary consultation. We tailor routes, arrange stays, and personalize every detail.</p>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                    <a href="#" class="btn btn-warning text-white rounded-pill px-4 py-2 fw-bold" id="open-form-btn-2">Book Consultation</a>
+                    <a href="#" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">View All Trips</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 7. FOOTER -->
-    <footer class="footer" id="footer">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="logo">
-                    <i class="fa-solid fa-compass"></i> Escape 
+    <footer class="bg-light pt-5 pb-3" id="footer">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand fw-bold fs-4 text-primary mb-3 d-block" href="#"><i class="fa-solid fa-compass"></i> Escape</a>
+                    <p class="text-muted small">Curating extraordinary journeys across the globe since 2014.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-dark"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-dark"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
                 </div>
-                <p>Curating extraordinary journeys across the globe since 2014.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    
-                </div>
-            </div>
-
-            <div class="footer-links">
-                <div class="link-column">
-                    <h4>DESTINATIONS</h4>
-                    <ul>
-                        <li><a href="#">Maldives</a></li>
-                        <li><a href="#">Switzerland</a></li>
-                        <li><a href="#">Lakshadweep</a></li>
+                <div class="col-6 col-lg-2">
+                    <h5 class="fw-bold small text-uppercase mb-3">Destinations</h5>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Maldives</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Switzerland</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Lakshadweep</a></li>
                     </ul>
                 </div>
-                </div>
-
-                <div class="footer-links">
-                <div class="link-column">
-                    <h4>COMPANY</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Contact</a></li>
+                <div class="col-6 col-lg-2">
+                    <h5 class="fw-bold small text-uppercase mb-3">Company</h5>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Our Story</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Contact</a></li>
                     </ul>
                 </div>
             </div>
-
-        
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 Escape Travels. All rights reserved.</p>
+            <div class="border-top pt-3 text-center text-muted small">
+                <p class="mb-0">&copy; 2026 Escape Travels. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
-        <!-- BOOKING FORM MODAL -->
-    <div class="modal-overlay" id="booking-modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-form-btn">&times;</span>
-            <h2>Book Your Slot</h2>
-            <p>Fill in your details to secure your spot.</p>
-            
-                          <form id="booking-form" novalidate>
-                <!-- Name -->
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <div class="input-wrapper">
-                        <i class="fa-regular fa-user input-icon"></i>
-                        <input type="text" id="name" placeholder="John Doe">
-                    </div>
-                    <small class="error-msg" id="name-error"></small>
+        <!-- BOOKING FORM MODAL (Bootstrap Modal) -->
+    <div class="modal fade" id="booking-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                
+                <!-- Header (Center Aligned) -->
+                <div class="modal-header border-0 pt-4 pb-0 d-flex flex-column align-items-center position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title fw-bold fs-3 text-primary mb-1">Book Your Slot</h5>
+                    <p class="text-muted small mb-0 text-center">Fill in your details to secure your spot.</p>
                 </div>
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <i class="fa-regular fa-envelope input-icon"></i>
-                        <input type="email" id="email" placeholder="john@example.com">
-                    </div>
-                    <small class="error-msg" id="email-error"></small>
-                </div>
-
-                <!-- Phone -->
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-phone input-icon"></i>
-                        <input type="tel" id="phone" placeholder="9876543210">
-                    </div>
-                    <small class="error-msg" id="phone-error"></small>
-                </div>
-
-                <!-- Destination Dropdown -->
-                <div class="form-group">
-                    <label for="destination">Select Destination</label>
-                    <div class="input-wrapper">
-                        <i class="fa-solid fa-location-dot input-icon"></i>
-                        <select id="destination">
-                            <option value="">Choose your escape</option>
-                            <option value="Maldives">Maldives</option>
-                            <option value="Switzerland">Switzerland</option>
-                            <option value="Lakshadweep">Lakshadweep</option>
-                        </select>
-                    </div>
-                    <small class="error-msg" id="destination-error"></small>
-                </div>
-
-                <!-- Travel Date & Guests -->
-                <div style="display: flex; gap: 15px;">
-                    <div class="form-group" style="flex: 1; min-width: 0;">
-                        <label for="travel-date">Travel Date</label>
-                        <div class="input-wrapper">
-                            <input type="date" id="travel-date" style="padding-left: 15px;">
+                <div class="modal-body p-4">
+                    <form id="booking-form" novalidate>
+                        <!-- Name -->
+                        <div class="mb-3 position-relative">
+                            <label class="form-label small fw-bold text-uppercase">Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-regular fa-user text-muted"></i></span>
+                                <input type="text" id="name" class="form-control bg-light border-start-0 ps-0" placeholder="John Doe">
+                            </div>
+                            <small class="text-danger fw-bold" id="name-error" style="font-size: 0.75rem;"></small>
                         </div>
-                        <small class="error-msg" id="date-error"></small>
-                    </div>
-                    <div class="form-group" style="flex: 1; min-width: 0;">
-                        <label for="guests">Guests</label>
-                        <div class="input-wrapper">
-                            <i class="fa-solid fa-users input-icon"></i>
-                            <input type="number" id="guests" min="1" max="10" placeholder="2">
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-regular fa-envelope text-muted"></i></span>
+                                <input type="email" id="email" class="form-control bg-light border-start-0 ps-0" placeholder="john@example.com">
+                            </div>
+                            <small class="text-danger fw-bold" id="email-error" style="font-size: 0.75rem;"></small>
                         </div>
-                        <small class="error-msg" id="guests-error"></small>
-                    </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase">Phone Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-phone text-muted"></i></span>
+                                <input type="tel" id="phone" class="form-control bg-light border-start-0 ps-0" placeholder="9876543210">
+                            </div>
+                            <small class="text-danger fw-bold" id="phone-error" style="font-size: 0.75rem;"></small>
+                        </div>
+
+                        <!-- Destination -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase">Select Destination</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-location-dot text-muted"></i></span>
+                                <select id="destination" class="form-select bg-light border-start-0 ps-0">
+                                    <option value="">Choose your escape</option>
+                                    <option value="Maldives">Maldives</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                </select>
+                            </div>
+                            <small class="text-danger fw-bold" id="destination-error" style="font-size: 0.75rem;"></small>
+                        </div>
+
+                        <!-- Date & Guests -->
+                        <div class="row g-2 mb-4">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-uppercase">Travel Date</label>
+                                <input type="date" id="travel-date" class="form-control bg-light">
+                                <small class="text-danger fw-bold" id="date-error" style="font-size: 0.75rem;"></small>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-uppercase">Guests</label>
+                                <input type="number" id="guests" class="form-control bg-light" min="1" max="10" placeholder="2">
+                                <small class="text-danger fw-bold" id="guests-error" style="font-size: 0.75rem;"></small>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">Confirm Booking <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                    </form>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <button type="submit" class="btn-submit">Confirm Booking <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></button>
-            </form>     
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
