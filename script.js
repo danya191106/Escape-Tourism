@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. Smooth Scrolling for Navbar
-    document.querySelectorAll('.nav-links a, .navbar-nav a').forEach(anchor => {
+    const navLinks = document.querySelectorAll('.navbar-nav a, .navbar-brand');
+    navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if(targetId && targetId.startsWith('#') && targetId !== '#') {
                 e.preventDefault();
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
-                    // Close mobile menu if open
                     const navbarCollapse = document.getElementById('navbarNav');
-                    if(navbarCollapse.classList.contains('show')) {
+                    if(navbarCollapse && navbarCollapse.classList.contains('show')) {
                         new bootstrap.Collapse(navbarCollapse).hide();
                     }
                     targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. WEATHER API INTEGRATION
+    // 2. Weather API Integration
     const weatherWidget = document.getElementById('weather-widget');
     const weatherTemp = document.getElementById('weather-temp');
     const weatherDesc = document.getElementById('weather-desc');
@@ -29,9 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchWeather(destination) {
         try {
             weatherWidget.classList.remove('d-none');
+            weatherWidget.classList.add('d-inline-flex'); 
+            weatherWidget.classList.remove('d-flex'); 
+            
             weatherTemp.innerText = '--°C';
             weatherDesc.innerText = 'Fetching...';
-            weatherIcon.className = 'fa-solid fa-spinner fa-spin';
+            weatherIcon.className = 'fa-solid fa-spinner fa-spin text-white fs-2';
 
             const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${destination}&aqi=no`);
             if (!response.ok) throw new Error('Location not found');
@@ -39,16 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             weatherTemp.innerText = `${data.current.temp_c}°C`;
             weatherDesc.innerText = data.current.condition.text;
-            weatherIcon.className = 'fa-solid fa-cloud-sun'; 
+            
+            const conditionText = data.current.condition.text.toLowerCase();
+            
+            if (conditionText.includes('rain') || conditionText.includes('drizzle') || conditionText.includes('shower')) {
+                weatherIcon.className = 'fa-solid fa-cloud-showers-heavy text-info fs-2'; 
+            } else if (conditionText.includes('cloud') || conditionText.includes('overcast')) {
+                weatherIcon.className = 'fa-solid fa-cloud text-secondary fs-2'; 
+            } else if (conditionText.includes('snow') || conditionText.includes('ice')) {
+                weatherIcon.className = 'fa-solid fa-snowflake text-light fs-2'; 
+            } else if (conditionText.includes('thunder') || conditionText.includes('storm')) {
+                weatherIcon.className = 'fa-solid fa-bolt text-warning fs-2'; 
+            } else {
+                weatherIcon.className = 'fa-solid fa-sun text-warning fs-2'; 
+            }
 
         } catch (error) {
             weatherTemp.innerText = 'Error';
             weatherDesc.innerText = 'Not found';
-            weatherIcon.className = 'fa-solid fa-triangle-exclamation';
+            weatherIcon.className = 'fa-solid fa-triangle-exclamation text-danger fs-2';
         }
     }
 
-    // 3. SEARCH BUTTON TRIGGER
+    // 3. Search Button & Weather Trigger
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('dest-input'); 
 
@@ -66,20 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. BOOKING FORM LOGIC & BOOTSTRAP MODAL
+    // 4. Booking Form Logic
     const openFormBtns = [document.getElementById('open-form-btn'), document.getElementById('open-form-btn-2')];
     const bookingModalElement = document.getElementById('booking-modal');
-    const bookingModal = new bootstrap.Modal(bookingModalElement); // Bootstrap Modal Instance
+    const bookingModal = new bootstrap.Modal(bookingModalElement);
     const bookingForm = document.getElementById('booking-form');
 
-    // Open Modal
     openFormBtns.forEach(btn => {
         if(btn) {
             btn.addEventListener('click', (e) => { e.preventDefault(); bookingModal.show(); });
         }
     });
 
-    // Form Elements
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
@@ -87,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateInput = document.getElementById('travel-date');
     const guestsInput = document.getElementById('guests');
 
-    // Error Elements
     const nameError = document.getElementById('name-error');
     const emailError = document.getElementById('email-error');
     const phoneError = document.getElementById('phone-error');
@@ -95,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateError = document.getElementById('date-error');
     const guestsError = document.getElementById('guests-error');
 
-    // Validation Functions
     function validateName() {
         if (nameInput.value.trim().length < 3) { nameError.textContent = "Name must be at least 3 characters."; return false; } 
         else { nameError.textContent = ""; return true; }
@@ -123,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else { guestsError.textContent = ""; return true; }
     }
 
-    // Real-time Validation
     nameInput.addEventListener('input', validateName);
     emailInput.addEventListener('input', validateEmail);
     phoneInput.addEventListener('input', validatePhone);
@@ -131,10 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dateInput.addEventListener('change', validateDate);
     guestsInput.addEventListener('input', validateGuests);
 
-    // Form Submission
     bookingForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const isNameValid = validateName();
         const isEmailValid = validateEmail();
         const isPhoneValid = validatePhone();
@@ -145,8 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isNameValid && isEmailValid && isPhoneValid && isDestValid && isDateValid && isGuestsValid) {
             alert(`Booking Confirmed for ${destFormInput.value}! We will contact you soon. 🌴`);
             bookingForm.reset(); 
-            bookingModal.hide(); // Bootstrap Modal hide
+            bookingModal.hide(); 
         }
     });
-
 });

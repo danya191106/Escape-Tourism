@@ -60,16 +60,14 @@
             </div>
 
             <!-- Weather Widget -->
-            <div class="weather-widget mt-4 mx-auto d-none" id="weather-widget">
-                <div class="d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-cloud-sun fs-1 text-warning" id="weather-icon"></i>
+            <div class="weather-widget mt-4 mx-auto d-inline-flex align-items-center gap-3" id="weather-widget">
+    <i class="fa-solid fa-cloud-sun fs-2 text-warning" id="weather-icon"></i>
                     <div class="text-start">
-                        <h3 class="fw-bold mb-0 text-white" id="weather-temp">--°C</h3>
+                        <h3 class="fw-bold mb-0 text-white" id="weather-temp" style="font-size: 1.5rem;">--°C</h3>
                         <p class="text-light mb-0 small" id="weather-desc">Loading...</p>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- 3. QUOTE SECTION -->
@@ -82,7 +80,7 @@
         </div>
     </section>
 
-    <!-- 4. TRENDING GETAWAYS -->
+        <!-- 4. TRENDING GETAWAYS -->
     <section class="py-5 bg-white" id="destinations">
         <div class="container py-4">
             <div class="mb-5">
@@ -97,8 +95,12 @@
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                         <div class="position-relative">
                             <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Maldives" style="height: 250px; object-fit: cover;">
-                            <span class="position-absolute top-0 start-0 m-3 badge bg-primary">BEACH PARADISE</span>
-                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">5 Days</span>
+                            <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-primary">BEACH PARADISE</span>
+                                    <span class="badge bg-white text-dark shadow-sm">5 Days</span>
+                                </div>
+                            </div>
                             <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$2,499 <small>/person</small></span>
                         </div>
                         <div class="card-body p-4">
@@ -114,13 +116,18 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Card 2 -->
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                         <div class="position-relative">
                             <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Switzerland" style="height: 250px; object-fit: cover;">
-                            <span class="position-absolute top-0 start-0 m-3 badge bg-info">MOUNTAIN ESCAPE</span>
-                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">7 Days</span>
+                            <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-info">MOUNTAIN ESCAPE</span>
+                                    <span class="badge bg-white text-dark shadow-sm">7 Days</span>
+                                </div>
+                            </div>
                             <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$3,200 <small>/person</small></span>
                         </div>
                         <div class="card-body p-4">
@@ -136,13 +143,18 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Card 3 -->
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                         <div class="position-relative">
                             <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Lakshadweep" style="height: 250px; object-fit: cover;">
-                            <span class="position-absolute top-0 start-0 m-3 badge bg-warning text-dark">HIDDEN GEM</span>
-                            <span class="position-absolute top-0 start-0 m-3 ms-5 badge bg-white text-dark">4 Days</span>
+                            <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-warning text-dark">HIDDEN GEM</span>
+                                    <span class="badge bg-white text-dark shadow-sm">4 Days</span>
+                                </div>
+                            </div>
                             <span class="position-absolute bottom-0 end-0 m-3 badge bg-dark bg-opacity-75 fs-6">$1,200 <small>/person</small></span>
                         </div>
                         <div class="card-body p-4">
@@ -161,7 +173,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- 5. WHY CHOOSE US -->
     <section class="py-5 bg-light" id="why-us">
         <div class="container py-4">
