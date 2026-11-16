@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Smooth Scrolling for Navbar
+    // 1. AOS Animation Initialization
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // 2. Smooth Scrolling for Navbar
     const navLinks = document.querySelectorAll('.navbar-nav a, .navbar-brand');
     navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -19,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Weather API Integration
+    // 3. Weather API Integration
     const weatherWidget = document.getElementById('weather-widget');
     const weatherTemp = document.getElementById('weather-temp');
     const weatherDesc = document.getElementById('weather-desc');
@@ -64,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. Search Button & Weather Trigger
+    // 4. Search Button & Weather Trigger
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('dest-input'); 
 
@@ -82,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Booking Form Logic
+    // 5. Booking Form Logic
     const openFormBtns = [document.getElementById('open-form-btn'), document.getElementById('open-form-btn-2')];
     const bookingModalElement = document.getElementById('booking-modal');
     const bookingModal = new bootstrap.Modal(bookingModalElement);

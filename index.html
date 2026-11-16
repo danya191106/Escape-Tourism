@@ -11,15 +11,18 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-    <!-- Google Fonts with display=swap -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-       <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqk1wZG1W6Y6w7+0G7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7L7" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -52,7 +55,7 @@
     <!-- 2. HERO SECTION -->
     <main>
         <section class="hero position-relative d-flex flex-column justify-content-center align-items-center text-center text-white" id="home">
-            <div class="container position-relative z-2">
+            <div class="container position-relative z-2" data-aos="fade-up">
                 <div class="badge bg-white bg-opacity-25 text-white rounded-pill px-3 py-2 mb-3 fw-semibold border border-light border-opacity-25">
                     <i class="fa-solid fa-water me-2"></i> BEACHES & MOUNTAINS AWAIT
                 </div>
@@ -80,7 +83,7 @@
         </section>
 
         <!-- 3. QUOTE SECTION -->
-        <section class="bg-primary bg-opacity-10 py-4 text-center border-bottom">
+        <section class="bg-primary bg-opacity-10 py-4 text-center border-bottom" data-aos="fade-in">
             <div class="container">
                 <p class="fst-italic text-secondary mb-0">
                     <i class="fa-solid fa-quote-left me-2"></i> The Maldives trip was pure magic. Escape handled our overwater villa and private snorkeling tours perfectly. 
@@ -92,7 +95,7 @@
         <!-- 4. TRENDING GETAWAYS -->
         <section class="py-5 bg-white" id="destinations">
             <div class="container py-4">
-                <div class="mb-5">
+                <div class="mb-5" data-aos="fade-right">
                     <span class="text-primary fw-bold text-uppercase tracking-wide small"><i class="fa-solid fa-map me-2"></i> CURATED COLLECTIONS</span>
                     <h2 class="display-6 fw-bold mt-2">Top Escapes</h2>
                     <p class="text-muted">Handcrafted journeys for beach lovers and mountain adventurers.</p>
@@ -100,10 +103,10 @@
 
                 <div class="row g-4">
                     <!-- Card 1 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
                         <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                             <div class="position-relative">
-                                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Maldives"     style="height: 250px; width: 100%; object-fit: cover;">
+                                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Maldives" style="height: 250px; width: 100%; object-fit: cover;">
                                 <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
                                     <div class="d-flex gap-2">
                                         <span class="badge bg-primary">BEACH PARADISE</span>
@@ -127,10 +130,10 @@
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                             <div class="position-relative">
-                                <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Switzerland"  style="height: 250px; width: 100%; object-fit: cover;">
+                                <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Switzerland" style="height: 250px; width: 100%; object-fit: cover;">
                                 <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
                                     <div class="d-flex gap-2">
                                         <span class="badge bg-info">MOUNTAIN ESCAPE</span>
@@ -154,10 +157,10 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
                         <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden card-hover">
                             <div class="position-relative">
-                                <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Lakshadweep"  style="height: 250px; width: 100%; object-fit: cover;" >
+                                <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=400" class="card-img-top" loading="lazy" width="600" height="250" alt="Lakshadweep" style="height: 250px; width: 100%; object-fit: cover;">
                                 <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between align-items-start">
                                     <div class="d-flex gap-2">
                                         <span class="badge bg-warning text-dark">HIDDEN GEM</span>
@@ -186,28 +189,28 @@
         <!-- 5. WHY CHOOSE US -->
         <section class="py-5 bg-light" id="why-us">
             <div class="container py-4">
-                <div class="text-center mb-5">
+                <div class="text-center mb-5" data-aos="fade-up">
                     <span class="text-primary fw-bold text-uppercase small"><i class="fa-solid fa-shield-heart me-2"></i> THE ESCAPE DIFFERENCE</span>
                     <h2 class="display-6 fw-bold mt-2">Why Travel With Escape</h2>
                     <p class="text-muted">We take care of every detail so you can focus on creating memories.</p>
                 </div>
 
                 <div class="row g-4 mb-5">
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="0">
                         <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
                             <div class="bg-success bg-opacity-10 text-success rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-sack-dollar fs-5"></i></div>
                             <h3 class="h5 fw-bold">Best Price Guarantee</h3>
                             <p class="text-muted small mb-0">Unmatched value on premium packages. Find a lower price? We match it plus give you a $100 travel credit.</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                         <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
                             <div class="bg-warning bg-opacity-10 text-warning rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-map-location-dot fs-5"></i></div>
                             <h3 class="h5 fw-bold">Expert Local Guides</h3>
                             <p class="text-muted small mb-0">Handpicked insiders who unlock hidden gems, authentic culinary spots, and private access.</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
                         <div class="card h-100 border-0 shadow-sm p-4 rounded-4">
                             <div class="bg-info bg-opacity-10 text-info rounded-3 d-inline-flex justify-content-center align-items-center mb-3" style="width: 50px; height: 50px;"><i class="fa-solid fa-headset fs-5"></i></div>
                             <h3 class="h5 fw-bold">24/7 Dedicated Support</h3>
@@ -217,7 +220,7 @@
                 </div>
 
                 <!-- Stats -->
-                <div class="row text-center bg-white rounded-4 shadow-sm p-4 mx-1">
+                <div class="row text-center bg-white rounded-4 shadow-sm p-4 mx-1" data-aos="fade-up">
                     <div class="col-6 col-md-3 mb-3 mb-md-0">
                         <h2 class="fw-bold text-primary display-6 mb-0">100%</h2>
                         <p class="text-muted small mb-0">Tailored Experiences</p>
@@ -241,7 +244,7 @@
         <!-- 6. CTA BANNER -->
         <section class="py-5 bg-white">
             <div class="container">
-                <div class="bg-primary text-white rounded-5 p-5 d-md-flex justify-content-between align-items-center shadow-lg">
+                <div class="bg-primary text-white rounded-5 p-5 d-md-flex justify-content-between align-items-center shadow-lg" data-aos="fade-up">
                     <div class="mb-4 mb-md-0">
                         <span class="fw-bold small text-uppercase opacity-75"><i class="fa-solid fa-plane me-2"></i> READY TO EXPLORE?</span>
                         <h2 class="display-6 fw-bold mt-2 mb-3">Design your custom itinerary.</h2>
@@ -261,15 +264,14 @@
         <div class="container">
             <div class="row g-4 mb-5">
                 <div class="col-lg-4">
-              <a class="navbar-brand fw-bold fs-4 text-primary mb-3 d-flex align-items-center gap-2" href="#">
-    <img src="images/logo.png" alt="Escape Logo" width="40" height="40" style="object-fit: contain;"> 
-    <span class="fw-bold" style="color: var(--primary-color); letter-spacing: -1px;">Escape</span>
-</a>
+                    <a class="navbar-brand fw-bold fs-4 text-primary mb-3 d-flex align-items-center gap-2" href="#">
+                        <img src="images/logo.png" alt="Escape Logo" width="40" height="40" style="object-fit: contain;"> 
+                        <span class="fw-bold" style="color: var(--primary-color); letter-spacing: -1px;">Escape</span>
+                    </a>
                     <p class="text-muted small">Curating extraordinary journeys across the globe since 2014.</p>
-                   
                 </div>
                 <div class="col-6 col-lg-2">
-                    <h5 class="fw-bold small text-uppercase mb-3">Destinations</h5>
+                    <h2 class="h5 fw-bold small text-uppercase mb-3">Destinations</h2>
                     <ul class="list-unstyled text-muted small">
                         <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Maldives</a></li>
                         <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Switzerland</a></li>
@@ -277,7 +279,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-lg-2">
-                    <h5 class="fw-bold small text-uppercase mb-3">Company</h5>
+                    <h2 class="h5 fw-bold small text-uppercase mb-3">Company</h2>
                     <ul class="list-unstyled text-muted small">
                         <li class="mb-2"><a href="#" class="text-decoration-none text-muted">About Us</a></li>
                         <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Our Story</a></li>
@@ -360,6 +362,11 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>
