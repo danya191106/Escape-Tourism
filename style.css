@@ -202,3 +202,11 @@ body {
 .text-muted {
     color: #475569 !important; 
 }
+
+/* Footer Text Contrast Fix */
+.text-muted {
+    color: #475569 !important; 
+}
+footer .text-muted, footer p, footer a {
+    color: #334155 !important; 
+}
