@@ -198,3 +198,7 @@ body {
 .modal-title {
     font-size: 2rem !important; 
 }
+
+.text-muted {
+    color: #475569 !important; 
+}
