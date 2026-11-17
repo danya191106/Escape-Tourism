@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 1. AOS Animation Initialization
     AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
+        duration: 1000,
+        once: false,
+        offset: 50
     });
 
     // 2. Smooth Scrolling for Navbar

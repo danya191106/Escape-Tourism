@@ -193,3 +193,8 @@ body {
 footer .text-muted, footer p, footer a {
     color: #334155 !important; 
 }
+
+/* AOS Custom Overrides */
+[data-aos] {
+    pointer-events: auto;
+}
